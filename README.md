@@ -79,6 +79,6 @@ The application uses JSON Web Token (JWT) authentication with role-based authori
 
 **Udit Panthi**
 
-LinkedIn: https://linkedin.com/in/your-profile
+LinkedIn: https://linkedin.com/in/uditpanthi
 
-GitHub: https://github.com/your-username
+GitHub: https://github.com/uditpanthi
