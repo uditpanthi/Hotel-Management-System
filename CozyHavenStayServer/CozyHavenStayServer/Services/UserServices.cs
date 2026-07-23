@@ -40,7 +40,7 @@ namespace CozyHavenStayServer.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return null;
+                return null!;
             }
         }
 
@@ -53,14 +53,14 @@ namespace CozyHavenStayServer.Services
                 if (user == null)
                 {
                     _logger.LogError("User not found with given Id");
-                    return null;
+                    return null!;
                 }
                 return user;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return null;
+                return null!;
             }
         }
 
@@ -72,7 +72,7 @@ namespace CozyHavenStayServer.Services
             if (user == null)
             {
                 _logger.LogError("User not found with given name");
-                return null;
+                return null!;
             }
             return user;
         }
@@ -87,7 +87,7 @@ namespace CozyHavenStayServer.Services
             catch(Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return null;
+                return null!;
             }            
         }               
 
@@ -157,14 +157,14 @@ namespace CozyHavenStayServer.Services
                 var createdReview = await _reviewRepository.CreateAsync(model);
                 if(createdReview == null)
                 {
-                    return null;
+                    return null!;
                 }
                 return createdReview;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return null;
+                return null!;
             }
         }
 
@@ -178,7 +178,7 @@ namespace CozyHavenStayServer.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return null;
+                return null!;
             }
         }
 
@@ -191,14 +191,14 @@ namespace CozyHavenStayServer.Services
                 if (review == null)
                 {
                     _logger.LogError("Reviw not found with given Id");
-                    return null;
+                    return null!;
                 }
                 return review;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return null;
+                return null!;
             }
         }
 
@@ -212,14 +212,14 @@ namespace CozyHavenStayServer.Services
                 if (reviews == null)
                 {
                     _logger.LogError("Reviw not found with given Id");
-                    return null;
+                    return null!;
                 }
                 return reviews;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return null;
+                return null!;
             }
         }
 
@@ -232,14 +232,14 @@ namespace CozyHavenStayServer.Services
                 if (reviews == null)
                 {
                     _logger.LogError("Reviw not found with given Id");
-                    return null;
+                    return null!;
                 }
                 return reviews;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return null;
+                return null!;
             }
         }
 
@@ -273,7 +273,7 @@ namespace CozyHavenStayServer.Services
 
                 if (review == null)
                 {
-                    _logger.LogError("User not found with given Id");
+                    _logger.LogError("Review not found with given Id");
                     return false;
                 }
 

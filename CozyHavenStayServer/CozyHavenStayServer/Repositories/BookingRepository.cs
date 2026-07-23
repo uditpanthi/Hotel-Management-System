@@ -42,26 +42,36 @@ namespace CozyHavenStayServer.Repositories
             .ToListAsync();       
         }
 
-        public async Task<Booking?> GetAsync(Expression<Func<Booking, bool>> filter, bool useNoTracking = false)
+        public async Task<Booking> GetAsync(Expression<Func<Booking, bool>> filter, bool useNoTracking = false)
         {
+            Booking? booking;
             if (useNoTracking)
-                return await _context.Bookings.AsNoTracking().Where(filter)
-                .Include(b => b.Room)
-                .Include(b => b.Hotel).ThenInclude(h => h.HotelImages)
-                .Include(b => b.User)
-                .Include(b => b.Payment)
-                    .ThenInclude(p => p.Refund)
-                .AsSplitQuery()
-                .FirstOrDefaultAsync();
+            {
+                booking = await _context.Bookings.AsNoTracking().Where(filter)
+                    .Include(b => b.Room)
+                    .Include(b => b.Hotel).ThenInclude(h => h.HotelImages)
+                    .Include(b => b.User)
+                    .Include(b => b.Payment)
+                        .ThenInclude(p => p.Refund)
+                    .AsSplitQuery()
+                    .FirstOrDefaultAsync();
+            }
             else
-                return await _context.Bookings.Where(filter)
-                .Include(b => b.Room)
-                .Include(b => b.Hotel).ThenInclude(h => h.HotelImages)
-                .Include(b => b.User)
-                .Include(b => b.Payment)
-                    .ThenInclude(p => p.Refund)
-                .AsSplitQuery()
-                .FirstOrDefaultAsync();
+            {
+                booking = await _context.Bookings.Where(filter)
+                    .Include(b => b.Room)
+                    .Include(b => b.Hotel).ThenInclude(h => h.HotelImages)
+                    .Include(b => b.User)
+                    .Include(b => b.Payment)
+                        .ThenInclude(p => p.Refund)
+                    .AsSplitQuery()
+                    .FirstOrDefaultAsync();
+            }
+
+            if (booking == null)
+                throw new InvalidOperationException("Booking not found.");
+
+            return booking;
         }
 
         public async Task<Booking> UpdateAsync(Booking dbRecord)
