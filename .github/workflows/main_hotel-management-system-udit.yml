@@ -27,13 +27,13 @@ jobs:
           dotnet-version: '10.x'
 
       - name: Restore dependencies
-        run: dotnet restore CozyHavenStayServer/CozyHavenStayServer.csproj
+        run: dotnet restore CozyHavenStayServer/CozyHavenStayServer/CozyHavenStayServer.csproj
 
       - name: Build with dotnet
-        run: dotnet build CozyHavenStayServer/CozyHavenStayServer.csproj --configuration Release --no-restore
+        run: dotnet build CozyHavenStayServer/CozyHavenStayServer/CozyHavenStayServer.csproj --configuration Release --no-restore
 
       - name: Publish with dotnet
-        run: dotnet publish CozyHavenStayServer/CozyHavenStayServer.csproj --configuration Release -o "${{env.DOTNET_ROOT}}/myapp" --no-build
+        run: dotnet publish CozyHavenStayServer/CozyHavenStayServer/CozyHavenStayServer.csproj --configuration Release -o "${{env.DOTNET_ROOT}}/myapp" --no-build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
