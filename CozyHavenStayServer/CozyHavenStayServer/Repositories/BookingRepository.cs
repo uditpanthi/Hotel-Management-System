@@ -2,7 +2,7 @@
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -42,7 +42,7 @@ namespace CozyHavenStayServer.Repositories
             .ToListAsync();       
         }
 
-        public async Task<Booking> GetAsync(Expression<Func<Booking, bool>> filter, bool useNoTracking = false)
+        public async Task<Booking?> GetAsync(Expression<Func<Booking, bool>> filter, bool useNoTracking = false)
         {
             if (useNoTracking)
                 return await _context.Bookings.AsNoTracking().Where(filter)
